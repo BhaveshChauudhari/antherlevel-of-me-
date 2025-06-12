@@ -1,0 +1,426 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sandip</title>
+    <link rel="stylesheet" href="./init.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Devanagari:wght@100..900&display=swap');
+        body{font-family: "Noto Serif Devanagari", serif;font-size: 16px;color: #000000;}
+        .maindivInn {max-width: 800px;}
+        .sandip_Banner{display: flex;justify-content: center;margin: 20px 0;}
+        .headerSecInn{text-align: center;position: relative;}
+        .text1_head{font-weight: 500;word-spacing: 4px;font-size: 16px;}
+        .text2_head{color: #912d41;font-size: 44px;font-weight: 700;font-weight: bold;word-spacing: 10px;line-height: 60px;}
+        .text3_head{font-size: 18px;line-height: 1.3;word-spacing: 6px;font-weight: 400;}
+        .form_mainClass{border: 2px solid #912d41;}
+        .headerSecOut{background-color: #c5c9c8;padding: 10px 0;border-bottom: 1px solid #000;}
+        .mainTitle{margin-top: 20px;}
+        .mainTitle_text{color: #912d41;font-size:30px;font-weight: 600;font-weight: bold;word-spacing: 6px;background-color: #c5c9c8;text-align: center;line-height: 32px;padding-top: 10px;}
+        .form_content{padding: 15px;}
+        .YesNo {display: flex;justify-content: space-between;padding-left: 10px;}
+        .adharBox{width: 32px;height: 32px;padding:10px;border:1px solid #c9c6c6;background-color:#fafafa;}
+        .AdharBoxDiv{display:flex;justify-content:flex-start;}
+        .CourseSec{margin-bottom: 15px;}
+        .dividetwo {display: flex;justify-content: space-between;gap: 20px;}
+        .firstPointLft {display: flex;align-items: center;gap: 10px;}
+        .firstPointLft_new{display: flex;align-items: center;gap: 10px;justify-content: center;}
+        .input-border-bottom {border: none;border-top: 1px solid #c9c6c6;box-sizing: border-box;flex: 1;min-width: 0;}
+        .pointTxt1{font-size: 16px;}
+        .pointTxt1 {white-space: nowrap;flex-shrink: 0;}
+        .CourseSecLast{margin-top: 80px;}
+        .pointTxt11{text-align: center;}
+        .lastTip_Txt{padding: 10px;text-align: center;font-size: 16px;font-weight: 400; color:#912d41;border-top: 1px solid #000;}
+        .lastTip{background-color: #c5c9c8;}
+        .input-border-id{border: none;border-bottom: 1px solid #c9c6c6;box-sizing: border-box;flex: 1;min-width: 0;}
+        .sandip_logo{position: absolute;top: -30px;left:-20px;}
+        .sandip_logo_img{width: 80%;}
+        /* In init.css (or your main CSS file) */
+        #statusMessageContainer { /* Give the outer div an id if you move styles to CSS */
+            text-align: center;
+            padding: 10px 0;
+            min-height: 20px; /* Or whatever height fits your design */
+        }
+        
+        #statusMessage {
+            font-weight: bold;
+            /* You can add more styles here like color for errors/success */
+        }
+        
+        /* Optional: Classes for different states */
+        #statusMessage.loading {
+            color: #337ab7; /* Blue for loading */
+        }
+        #statusMessage.success {
+            color: #3c763d; /* Green for success */
+        }
+        #statusMessage.error {
+            color: #a94442; /* Red for error */
+        }
+                /* In your main CSS or <style> block */
+        #printableLcTypeIndicatorContainer {
+            text-align: center;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            display: none; /* Initially hidden */
+        }
+        #printableLcTypeIndicator {
+            font-size: 16pt; /* Or larger for more prominence */
+            font-weight: bold;
+            border: 2.5px solid black;
+            padding: 4px 15px;
+            color: black;
+            display: inline-block;
+            text-transform: uppercase;
+        }
+        
+        @media print {
+            /* ... (other print styles) ... */
+            #printableLcTypeIndicatorContainer {
+                display: block !important; /* Make it visible for print */
+            }
+            #printableLcTypeIndicator {
+                border: 2.5px solid black !important; /* Ensure border prints */
+            }
+            /* Hide interactive elements like buttons, status messages not part of the LC itself */
+            #statusMessage, #lcContextualStatusContainer, #saveAllStudentDetailsBtn, #issueAndLogLcBtn, #saveOperationStatus, #issueLcLogStatus {
+                display: none !important;
+            }
+        }
+                
+           
+            
+    
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/indic-transliteration@2.0.0/dist/browser/indic-transliteration.min.js"></script>
+    
+   
+</head>
+<body>
+    <section class="sandip_Banner col-100 floatLft">
+        <form id="uploadForm" class="form_mainClass" method="post" enctype="multipart/form-data">
+            <div class="maindivInn col-100 floatLft">
+                <div class="headerSecOut col-100 floatLft">
+                    <div class="headerSecInn col-100 floatLft">
+                        <h3 class="text1_head col-100 floatLft">कै. संदीप सुधाकर सोनजे शैक्षणिक सेवाभावी संस्था, झोडगे संचलित</h3>
+                        <h2 class="text2_head col-100 floatLft">संदिप विद्यालय, झोडगे</h2>
+                        <h3 class="text3_head col-100 floatLft" id="udise_number" name="udise_number">स्वप्नपंख, संदीपनगर, कंधाणे रस्ता, झोडगे, ता. मालेगाव, जि. नाशिक.<br>
+                        फोन : (०२५५४) २८५७०९, मोबा. ८८८८४१५९५९ Email : sssonje@rediffmail.com<br>
+                       युडायस नं. - नर्सरी ते पाचवी - 27200714706 
+
+                       <div class="sandip_logo">
+                        <img src="./Clg_logo.png" class="sandip_logo_img" alt="Sandop Logo"> 
+                       </div>
+                     </div>                
+                </div>
+                <div class="mainTitle col-100 floatLft">
+                    <h3 class="mainTitle_text">शाळा सोडल्याचे प्रमाणपत्र</h3>
+                </div>
+                <div style="text-align: center; padding: 10px 0; min-height: 20px;">
+                    <div id="statusMessage" style="font-weight: bold;">
+                      <!-- JavaScript will put messages here -->
+                    </div>
+                </div>
+                <!-- In your main HTML form file (e.g., lc_form.html or index.php) -->
+                <!-- ... (after your main title <h3 class="mainTitle_text">शाळा सोडल्याचे प्रमाणपत्र</h3>) ... -->
+                
+                <div id="printableLcTypeIndicatorContainer" style="text-align: center; margin-top: 5px; margin-bottom: 10px; display: none;"> <!-- Initially hidden -->
+                    <span id="printableLcTypeIndicator" style="font-size: 18px; font-weight: bold; border: 2px solid black; padding: 3px 12px; color: black; text-transform: uppercase;">
+                        <!-- JS will write "ORIGINAL" or "DUPLICATE" here -->
+                    </span>
+                </div>
+                
+                <!-- ... (then your #statusMessage div, #lcContextualStatusContainer, and then .form_content) ... -->
+                <!-- In your main HTML form -->
+                <!-- ... (after your existing saveAllStudentDetailsBtn and its saveStudentDetailsStatus div) ... -->
+                
+                
+                <!-- Don't forget these divs from previous steps for displaying LC context on form load and for print -->
+                <!-- <div id="lcContextualStatusContainer">...<span id="lcContextualStatusText">...</span></div> -->
+                <!-- <div id="printableLcTypeIndicatorContainer" style="display: none;"><span id="printableLcTypeIndicator"></span></div> -->
+              
+                <div class="form_content col-100 floatLft">                    
+                    <div class="CourseSec col-100">
+                        <div class="dividetwo col-100">
+                            <div class="firstPointLft col-90">
+                                <div class="AdharBoxDiv col-100 floatLft">
+                                    <label class="pointTxt1"> स्टुडंट आय डी&nbsp;: </label>
+                                    <div class="YesNo">
+                                        <input type="text" class="adharBox" id="studentIdBox1" name="student_id_1" maxlength="1">
+                                        <input type="text" class="adharBox" id="studentIdBox2" name="student_id_2" maxlength="1">
+                                        <input type="text" class="adharBox" id="studentIdBox3" name="student_id_3" maxlength="1">
+                                        <input type="text" class="adharBox" id="studentIdBox4" name="student_id_4" maxlength="1">                                
+                                    </div>
+                                </div>
+                            </div> 
+                            <div class="firstPointLft col-10">                                
+                                <input type="text" class="input-border-id" id="generalRegisterNo" name="general_register_no">
+                            </div>                          
+                        </div>
+                    </div>
+                    <div class="CourseSec col-100 floatLft">
+                        <div class="AdharBoxDiv col-100 floatLft">
+                            <label class="pointTxt1">यु.आय.डी. नं. (आधार कार्ड क्रमांक)&nbsp;: </label>
+                            <div class="YesNo">
+                                <input type="text" class="adharBox" id="uidBox1" name="uid_1" maxlength="1">
+                                <input type="text" class="adharBox" id="uidBox2" name="uid_2" maxlength="1">
+                                <input type="text" class="adharBox" id="uidBox3" name="uid_3" maxlength="1">
+                                <input type="text" class="adharBox" id="uidBox4" name="uid_4" maxlength="1">  
+                                <input type="text" class="adharBox" id="uidBox5" name="uid_5" maxlength="1">
+                                <input type="text" class="adharBox" id="uidBox6" name="uid_6" maxlength="1">
+                                <input type="text" class="adharBox" id="uidBox7" name="uid_7" maxlength="1">
+                                <input type="text" class="adharBox" id="uidBox8" name="uid_8" maxlength="1">
+                                <input type="text" class="adharBox" id="uidBox9" name="uid_9" maxlength="1">
+                                <input type="text" class="adharBox" id="uidBox10" name="uid_10" maxlength="1">
+                                <input type="text" class="adharBox" id="uidBox11" name="uid_11" maxlength="1">
+                                <input type="text" class="adharBox" id="uidBox12" name="uid_12" maxlength="1">                              
+                            </div>
+                        </div>
+                    </div>
+                    <div class="CourseSec col-100">
+                        <div class="dividetwo col-100">
+                            <div class="firstPointLft col-50">
+                                <label class="pointTxt1">विद्यार्थ्याचे नाव&nbsp;:</label>
+                                <input type="text" class="input-border-bottom" id="student_full_name" name="student_full_name">
+                            </div> 
+                            <div class="firstPointLft col-50">
+                                <label class="pointTxt1">(वडिलांचे नाव)&nbsp;:</label>
+                                <input type="text" class="input-border-bottom" id="father_name" name="father_name">
+                            </div>                          
+                        </div>
+                    </div>
+                    <div class="CourseSec col-100">                        
+                        <div class="firstPointLft col-100">
+                            <label class="pointTxt1">आडनाव&nbsp;:</label>
+                            <input type="text" class="input-border-bottom" id="surname" name="surname">
+                        </div>                       
+                    </div>
+                    <div class="CourseSec col-100">                        
+                        <div class="firstPointLft col-100">
+                            <label class="pointTxt1">आईचे संपूर्ण नाव&nbsp;:</label>
+                            <input type="text" class="input-border-bottom" id="mother_full_name" name="mother_full_name">
+                        </div>                       
+                    </div>
+                    <div class="CourseSec col-100">
+                        <div class="dividetwo col-100">
+                            <div class="firstPointLft col-70">
+                                <label class="pointTxt1">राष्ट्रीयत्व &nbsp;:</label>
+                                <input type="text" class="input-border-bottom" id="nationality" name="nationality">
+                            </div> 
+                            <div class="firstPointLft col-30">
+                                <label class="pointTxt1">मातृभाषा&nbsp;:</label>
+                                <input type="text" class="input-border-bottom" id="mother_tongue" name="mother_tongue">
+                            </div>                          
+                        </div>
+                    </div>
+                    <div class="CourseSec col-100">
+                        <div class="dividetwo col-100">
+                            <div class="firstPointLft col-70">
+                                <label class="pointTxt1">धर्म &nbsp;:</label>
+                                <input type="text" class="input-border-bottom" id="religion" name="religion">
+                            </div> 
+                            <div class="firstPointLft col-30">
+                                <label class="pointTxt1">जात&nbsp;:</label>
+                                <input type="text" class="input-border-bottom" id="caste" name="caste">
+                            </div>
+                            <div class="firstPointLft col-30">
+                                <label class="pointTxt1">पोटजात&nbsp;:</label>
+                                <input type="text" class="input-border-bottom" id="sub_caste" name="sub_caste">
+                            </div>                         
+                        </div>
+                    </div>
+                    <div class="CourseSec col-100">
+                        <div class="dividetwo col-100">
+                            <div class="firstPointLft col-70">
+                                <label class="pointTxt1">जन्मस्थळ (गाव/शहर) &nbsp;:</label>
+                                <input type="text" class="input-border-bottom" id="birth_place_village_city" name="birth_place_village_city" >
+                            </div> 
+                            <div class="firstPointLft col-30">
+                                <label class="pointTxt1">तालुका&nbsp;:</label>
+                                <input type="text" class="input-border-bottom" id="birth_taluka" name="birth_taluka" >
+                            </div>
+                            <div class="firstPointLft col-30">
+                                <label class="pointTxt1">जिल्हा&nbsp;:</label>
+                                <input type="text" class="input-border-bottom" id="birth_district" name="birth_district">
+                            </div>                         
+                        </div>
+                    </div>
+                    <div class="CourseSec col-100">
+                        <div class="dividetwo col-100">
+                            <div class="firstPointLft col-50">
+                                <label class="pointTxt1">राज्य &nbsp;:</label>
+                                <input type="text" class="input-border-bottom" id="birth_state" name="birth_state">
+                            </div> 
+                            <div class="firstPointLft col-50">
+                                <label class="pointTxt1">देश&nbsp;:</label>
+                                <input type="text" class="input-border-bottom" id="birth_country" name="birth_country" >
+                            </div>                          
+                        </div>
+                    </div>
+                    <div class="CourseSec col-100 floatLft">
+                        <div class="AdharBoxDiv col-100 floatLft">
+                            <label class="pointTxt1">इ. सनाप्रमाणे जन्म दिनांक&nbsp;: </label>
+                            <div class="YesNo">
+                                <input type="text" class="adharBox" id="dobBox1" name="dob_d1" maxlength="1">
+                                <input type="text" class="adharBox" id="dobBox2" name="dob_d2" maxlength="1">
+                                <input type="text" class="adharBox" id="dobBox3" name="dob_m1" maxlength="1">
+                                <input type="text" class="adharBox" id="dobBox4" name="dob_m2" maxlength="1">  
+                                <input type="text" class="adharBox" id="dobBox5" name="dob_y1" maxlength="1">
+                                <input type="text" class="adharBox" id="dobBox6" name="dob_y2" maxlength="1" >
+                                <input type="text" class="adharBox" id="dobBox7" name="dob_y3" maxlength="1">
+                                <input type="text" class="adharBox" id="dobBox8" name="dob_y4" maxlength="1">                            
+                            </div>
+                        </div>
+                    </div>
+                    <div class="CourseSec col-100">                        
+                        <div class="firstPointLft col-100">
+                            <label class="pointTxt1">जन्म दिनांक अक्षरी&nbsp;:</label>
+                            <input type="text" class="input-border-bottom" id="dob_in_words" name="dob_in_words">
+                        </div>                       
+                    </div>
+                    <div class="CourseSec col-100">                        
+                        <div class="firstPointLft col-100">
+                            <label class="pointTxt1">या पूर्वीची शाळा व इयत्ता&nbsp;:</label>
+                            <input type="text" class="input-border-bottom" id="previous_school_and_standard" name="previous_school_and_standard">
+                        </div>                       
+                    </div>
+                    <div class="CourseSec col-100">
+                        <div class="dividetwo col-100">
+                            <div class="firstPointLft col-70">
+                                <div class="AdharBoxDiv col-50 floatLft">
+                                    <label class="pointTxt1">या शाळेत प्रवेश घेतल्याचा दिनांक&nbsp;: </label>
+                                    <div class="YesNo">
+                                        <input type="text" class="adharBox" id="admissionDateBox1" name="admission_date_d1" maxlength="1" >
+                                        <input type="text" class="adharBox" id="admissionDateBox2" name="admission_date_d2" maxlength="1" >
+                                        <input type="text" class="adharBox" id="admissionDateBox3" name="admission_date_m1" maxlength="1" >
+                                        <input type="text" class="adharBox" id="admissionDateBox4" name="admission_date_m2" maxlength="1" >
+                                        <input type="text" class="adharBox" id="admissionDateBox5" name="admission_date_y1" maxlength="1" >
+                                        <input type="text" class="adharBox" id="admissionDateBox6" name="admission_date_y2" maxlength="1" >
+                                        <input type="text" class="adharBox" id="admissionDateBox7" name="admission_date_y3" maxlength="1" >
+                                        <input type="text" class="adharBox" id="admissionDateBox8" name="admission_date_y4" maxlength="1" >
+                                                                  
+                                    </div>
+                                </div>
+                            </div> 
+                            <div class="firstPointLft col-50">
+                                <label class="pointTxt1">इयत्ता&nbsp;:</label>
+                                <input type="text" class="input-border-bottom" id="admission_standard" name="admission_standard" >
+                            </div>                          
+                        </div>
+                    </div>
+                    <div class="CourseSec col-100">
+                        <div class="dividetwo col-100">
+                            <div class="firstPointLft col-50">
+                                <label class="pointTxt1">अभ्यासातील प्रगती&nbsp;:</label>
+                                <input type="text" class="input-border-bottom" id="academic_progress" name="academic_progress" >
+                            </div> 
+                            <div class="firstPointLft col-50">
+                                <label class="pointTxt1">वर्तणूक &nbsp;:</label>
+                                <input type="text" class="input-border-bottom" id="conduct" name="conduct" >
+                            </div>                          
+                        </div>
+                    </div>
+                    <div class="CourseSec col-100 floatLft">
+                        <div class="AdharBoxDiv col-100 floatLft">
+                            <label class="pointTxt1">शाळा सोडल्याचा दिनांक&nbsp;: </label>
+                            <div class="YesNo">
+                                <input type="text" class="adharBox" id="leavingDateBox1" name="leaving_date_d1" maxlength="1" >
+                                <input type="text" class="adharBox" id="leavingDateBox2" name="leaving_date_d2" maxlength="1" >
+                                <input type="text" class="adharBox" id="leavingDateBox3" name="leaving_date_m1" maxlength="1" >
+                                <input type="text" class="adharBox" id="leavingDateBox4" name="leaving_date_m2" maxlength="1" >
+                                <input type="text" class="adharBox" id="leavingDateBox5" name="leaving_date_y1" maxlength="1" >
+                                <input type="text" class="adharBox" id="leavingDateBox6" name="leaving_date_y2" maxlength="1" >
+                                <input type="text" class="adharBox" id="leavingDateBox7" name="leaving_date_y3" maxlength="1" >
+                                <input type="text" class="adharBox" id="leavingDateBox8" name="leaving_date_y4" maxlength="1" >
+                                                        
+                            </div>
+                        </div>
+                    </div>
+                    <div class="CourseSec col-100">                        
+                        <div class="firstPointLft col-100">
+                            <label class="pointTxt1">कोणत्या इयत्तेत शिकत होता व केव्हापासून (अक्षरी व अंकी)&nbsp;:</label>
+                            <input type="text" class="input-border-bottom" id="standard_studying_in_and_since" name="standard_studying_in_and_since" >
+                        </div>                       
+                    </div>
+                    <div class="CourseSec col-100">                        
+                        <div class="firstPointLft col-100">
+                            <label class="pointTxt1">शाळा सोडण्याचे कारण&nbsp;:</label>
+                            <input type="text" class="input-border-bottom" id="reason_for_leaving" name="reason_for_leaving" >
+                        </div>                       
+                    </div>
+                    <div class="CourseSec col-100">                        
+                        <div class="firstPointLft col-100">
+                            <label class="pointTxt1">शेरा &nbsp;:</label>
+                            <input type="text" class="input-border-bottom" id="remarks" name="remarks">
+                        </div>                       
+                    </div>
+                    <div class="CourseSec col-100">                        
+                        <div class="firstPointLft col-100">
+                            <label class="pointTxt1">दाखला देण्यात येतो की, वरील माहिती शाळेतील जनरल रजिस्टर नं. १ प्रमाणे आहे.</label>                            
+                        </div>                       
+                    </div>
+                    <div class="CourseSec col-100">
+                        <div class="dividetwo col-100">
+                            <div class="firstPointLft col-40">
+                                <label class="pointTxt1">तारीख &nbsp;:</label>
+                                <input type="text" class="input-border-id" id="issue_day" name="issue_day">
+                            </div> 
+                            <div class="firstPointLft col-30">
+                                <label class="pointTxt1">माहे&nbsp;:</label>
+                                <input type="text" class="input-border-id" id="issue_month" name="issue_month" >
+                            </div>
+                            <div class="firstPointLft col-30">
+                                <label class="pointTxt1">सन&nbsp;:</label>
+                                <input type="text" class="input-border-id" id="issue_year"  name="issue_year">
+                            </div>                         
+                        </div>
+                    </div>
+                    <div class="CourseSecLast col-100">
+                        <div class="dividetwo col-100">
+                            <div class="firstPointLft_new col-30">
+                                <label class="pointTxt11">वर्गशिक्षक /-</label>                                
+                            </div> 
+                            <div class="firstPointLft_new col-30">
+                                <label class="pointTxt11">लेखनिक /-</label>
+                            </div>
+                            <div class="firstPointLft_new col-40">
+                                <label class="pointTxt11">मुख्याध्यापक / प्राचार्य<br>(शिक्का)</label>
+                            </div>                         
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+                 <input type="hidden" id="current_student_db_id" name="current_student_db_id" value="">
+                 <div class="CourseSec col-100" style="text-align: center; margin-top: 20px; padding-bottom: 20px;">
+                    <button type="button" id="issueAndLogLcBtn" style="padding: 10px 25px; font-size: 16px; background-color: #17a2b8; color: white; border: none; cursor: pointer; border-radius: 5px;">
+                        एलसी जारी करा आणि नोंद करा (Issue & Log LC)
+                    </button>
+                    <div id="issueLcLogStatus" style="margin-top: 10px; font-weight: bold;"></div>
+                </div>
+                
+        
+                    <!-- Add the Save Button and a status message area for save operations -->
+                    <div class="CourseSec col-100" style="text-align: center; margin-top: 30px; padding-bottom: 20px;">
+                        <button type="button" id="saveAllStudentDetailsBtn" style="padding: 10px 25px; font-size: 16px; background-color: #28a745; color: white; border: none; cursor: pointer; border-radius: 5px;">
+                            सर्व माहिती जतन करा (Save All Details)
+                        </button>
+                        <div id="saveOperationStatus" style="margin-top: 15px; font-weight: bold;"></div>
+                    </div>
+                
+                <div class="lastTip col-100 floatLft">
+                    <h3 class="lastTip_Txt">टीप : शाळा सोडल्याचे दाखल्यामध्ये अनधिकृतरित्या बदल केल्यास संबंधितावर कायदेशीर कारवाई करण्यात येईल.</h3>
+                </div>
+            </div>
+            <input type="hidden" name="ci_csrf_token" value="A_DYNAMIC_SERVER_GENERATED_TOKEN_VALUE_HERE" />
+        </form>
+    </section>
+    <!-- ... your form ... -->
+    <script src="https://cdn.jsdelivr.net/npm/indic-transliteration@2.0.0/dist/browser/indic-transliteration.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="autofill_lc_form.js"></script>
+    <script src="lc_issuance_actions.js"></script>
+</body>
+</html>
