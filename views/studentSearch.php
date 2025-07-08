@@ -1,6 +1,8 @@
 <?php
 $currency_symbol = $this->customlib->getSchoolCurrencyFormat();
 ?>
+<!--add quick test-->
+<?php echo "<!-- special/studentseach.php loaded -->"; ?>
 <div class="content-wrapper">
     <section class="content-header">
          
@@ -27,17 +29,11 @@ $currency_symbol = $this->customlib->getSchoolCurrencyFormat();
                                                 <select autofocus="" id="class_id" name="class_id" class="form-control" >
                                                     <option value=""><?php echo $this->lang->line('select'); ?></option>
                                                     <?php
-$count = 0;
-foreach ($classlist as $class) {
-    ?>
-                                                        <option value="<?php echo $class['id'] ?>" <?php if (set_value('class_id') == $class['id']) {
-        echo "selected=selected";
-    }
-    ?>><?php echo $class['class'] ?></option>
+                                                    $count = 0;
+                                                    foreach ($classlist as $class) { ?>
+                                                        <option value="<?php echo $class['id'] ?>" <?php if (set_value('class_id') == $class['id']) { echo "selected=selected"; } ?>><?php echo $class['class'] ?></option>
                                                         <?php
-$count++;
-}
-?>
+                                                            $count++; } ?>
                                                 </select>
                                                   <span class="text-danger" id="error_class_id"></span>
                                             </div>
@@ -98,26 +94,21 @@ $count++;
                                             <?php }?>
                                             <th><?php echo $this->lang->line('date_of_birth'); ?></th>
                                             <th><?php echo $this->lang->line('gender'); ?></th>
-                                            <?php if ($sch_setting->category) {
-    ?>
+                                            <?php if ($sch_setting->category) { ?>
                                               <?php if ($sch_setting->category) {?>
                                             <th><?php echo $this->lang->line('category'); ?></th>
-                                            <?php }
-}if ($sch_setting->mobile_no) {
-    ?>
+                                            <?php }}if ($sch_setting->mobile_no) {?>
                                             <th><?php echo $this->lang->line('mobile_number'); ?></th>
-                                            <?php
-}
-if (!empty($fields)) {
-
-    foreach ($fields as $fields_key => $fields_value) {
-        ?>
+                                            <?php }
+                                            if (!empty($fields)) {
+                                                foreach ($fields as $fields_key => $fields_value) { ?>
                                                     <th><?php echo $fields_value->name; ?></th>
-                                                    <?php
-}
-}
-?>
+                                                    <?php }}?>
+                                                    
                                             <th class="text-right noExport"><?php echo $this->lang->line('action'); ?></th>
+                                            <th class="text-right noExport"><?php echo $this->lang->line('lc_form'); ?>lc Genrate</th>
+
+                                            <!--<th class="text-right noExport">< ?php echo $this->lang->line('action'); ?></th>-->
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -125,24 +116,21 @@ if (!empty($fields)) {
                                 </table>
                             </div>
                             <div class="tab-pane detail_view_tab" id="tab_2">
-                                <?php if (empty($resultlist)) {
-    ?>
+                                <?php if (empty($resultlist)) { ?>
                                     <div class="alert alert-info"><?php echo $this->lang->line('no_record_found'); ?></div>
-                                    <?php
-} else {
-    $count = 1;
-    foreach ($resultlist as $student) {
-
-        if (empty($student["image"])) {
-            if ($student['gender'] == 'Female') {
-                $image = "uploads/student_images/default_female.jpg";
-            } else {
-                $image = "uploads/student_images/default_male.jpg";
-            }
-        } else {
-            $image = $student['image'];
-        }
-        ?>
+                                <?php } else {
+                                    $count = 1;
+                                    foreach ($resultlist as $student) {
+                                        if (empty($student["image"])) {
+                                            if ($student['gender'] == 'Female') {
+                                                $image = "uploads/student_images/default_female.jpg";
+                                            } else {
+                                                $image = "uploads/student_images/default_male.jpg";
+                                            }
+                                        } else {
+                                            $image = $student['image'];
+                                        }
+                                        ?>
                                         <div class="carousel-row">
                                             <div class="slide-row">
                                                 <div id="carousel-2" class="carousel slide slide-carousel" data-ride="carousel">
@@ -160,8 +148,7 @@ if (!empty($fields)) {
                                                             <address>
                                                                 <strong><b><?php echo $this->lang->line('class'); ?>: </b><?php echo $student['class'] . "(" . $student['section'] . ")" ?></strong><br>
                                                                 <b><?php echo $this->lang->line('admission_no'); ?>: </b><?php echo $student['admission_no'] ?><br/>
-                                                                <b><?php echo $this->lang->line('date_of_birth'); ?>:
-            <?php if ($student["dob"] != null && $student["dob"] != '0000-00-00') {echo date($this->customlib->getSchoolDateFormat(), $this->customlib->dateyyyymmddTodateformat($student['dob']));}?><br>
+                                                                <b><?php echo $this->lang->line('date_of_birth'); ?>: <?php if ($student["dob"] != null && $student["dob"] != '0000-00-00') {echo date($this->customlib->getSchoolDateFormat(), $this->customlib->dateyyyymmddTodateformat($student['dob']));}?><br>
                                                                     <b><?php echo $this->lang->line('gender'); ?>:&nbsp;</b><?php echo $this->lang->line(strtolower($student['gender'])) ?><br>
                                                                     </address>
                                                                     </div>
@@ -177,24 +164,28 @@ if (!empty($fields)) {
                                                                     </div>
                                                                     <div class="slide-footer">
                                                                         <span class="pull-right buttons">
-                                                                            <a href="<?php echo base_url(); ?>student/view/<?php echo $student['id'] ?>" class="btn btn-default btn-xs"  data-toggle="tooltip" title="<?php echo $this->lang->line('view'); ?>" >
+                                                                            <a href="< ?php echo base_url(); ?>student/view/< ?php echo $student['id'] ?>" class="btn btn-default btn-xs"  data-toggle="tooltip" title="< ?php echo $this->lang->line('view'); ?>" >
                                                                                 <i class="fa fa-reorder"></i>
                                                                             </a>
-                                                                            <?php
+                                                                            < ?php
 if ($this->rbac->hasPrivilege('student', 'can_edit')) {
             ?>
-                                                                                <a href="<?php echo base_url(); ?>student/edit/<?php echo $student['id'] ?>" class="btn btn-default btn-xs"  data-toggle="tooltip" title="<?php echo $this->lang->line('edit'); ?>">
+                                                                                <a href="< ?php echo base_url(); ?>student/edit/< ?php echo $student['id'] ?>" class="btn btn-default btn-xs"  data-toggle="tooltip" title="< ?php echo $this->lang->line('edit'); ?>">
                                                                                     <i class="fa fa-pencil"></i>
                                                                                 </a>
-                                                                                <?php }
+                                                                                < ?php }
         if ($this->module_lib->hasActive('fees_collection') && $this->rbac->hasPrivilege('collect_fees', 'can_add')) {
             ?>
-                                                                                <a href="<?php echo base_url(); ?>studentfee/addfee/<?php echo $student['id'] ?>" class="btn btn-default btn-xs" data-toggle="tooltip" title="" data-original-title="<?php echo $this->lang->line('add_fees'); ?>">
-                                                                                <?php echo $currency_symbol; ?>
+                                                                                <a href="< ?php echo base_url(); ?>studentfee/addfee/< ?php echo $student['id'] ?>" class="btn btn-default btn-xs" data-toggle="tooltip" title="" data-original-title="< ?php echo $this->lang->line('add_fees'); ?>">
+                                                                                < ?php echo $currency_symbol; ?>
                                                                                 </a>
                                                                                 
-                                                                            
-            <?php }?>
+                                                                               // Add this after the existing action buttons
+'<a href="'.base_url().'lc/generate_lc/'.$student['id'].'" class="btn btn-default btn-xs" data-toggle="tooltip" title="Generate LC">'.
+    '<i class="fa fa-file-text"></i>'.
+'</a>'
+                                                                                                                                                            
+                                                                                            < ?php }?>
                                                                         </span>
                                                                     </div>
                                                                     </div>
@@ -380,7 +371,7 @@ $(document).on('submit','.class_search_form',function(e){
         } ],
 
 
-           "language": {
+        "language": {
             processing: '<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">Loading...</span> '},
         "pageLength": 100,
         "processing": true,
