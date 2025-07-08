@@ -106,7 +106,7 @@ $currency_symbol = $this->customlib->getSchoolCurrencyFormat();
                                                     <?php }}?>
                                                     
                                             <th class="text-right noExport"><?php echo $this->lang->line('action'); ?></th>
-                                            <th class="text-right noExport"><?php echo $this->lang->line('lc_form'); ?>lc Genrate</th>
+                                            <th class="text-right noExport"><?php echo $this->lang->line('lc_form'); ?>LC</th>
 
                                             <!--<th class="text-right noExport">< ?php echo $this->lang->line('action'); ?></th>-->
                                         </tr>
@@ -366,11 +366,21 @@ $(document).on('submit','.class_search_form',function(e){
         ],
 
         "columnDefs": [ {
+            "targets": -2, // Target the second last column (existing actions)
+            "orderable": false,
+            "className": "text-right noExport"
+        },
+      {
         "targets": -1,
-        "orderable": false
-        } ],
-
-
+        "orderable": false,
+        "className": "text-right",
+        "render": function(data, type, row) {
+            // Extract ID from the first column or another field
+            var studentId = row[0]; // Adjust index based on where ID appears
+            return '<a href="'+base_url+'student/generate_lc/'+studentId+'" class="btn btn-default btn-xs" data-toggle="tooltip" title="Generate LC"><i class="fa fa-file-text"></i></a>';
+        }
+    }
+    ],
         "language": {
             processing: '<i class="fa fa-spinner fa-spin fa-1x fa-fw"></i><span class="sr-only">Loading...</span> '},
         "pageLength": 100,
